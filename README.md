@@ -84,19 +84,6 @@ BRCA2
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     **BRCA1**
     
 | Software  | ACC <br>(%)  | SEN <br>(%)  | SPE <br>(%)  | PPV <br>(%)  | NPV <br>(%)  | MCC  | AUC  |
@@ -126,4 +113,11 @@ BRCA2
 | PANTHER-PSEP  | 73.88  | 86.21  | 70.48  | 44.64  | 94.87  | 0.473  | 0.850  |
 | HumDiv  | 69.40  | 89.66  | 63.81  | 40.63  | 95.71  | 0.441  | 0.874  |
 | HumVar  | 79.10  | 82.76  | 78.10  | 51.06  | 94.25  | 0.525  | 0.902  |
+
+Images
+MCC
+
+![This is an image](https://onedrive.live.com/?cid=27FBAE497306732F&id=27FBAE497306732F%2119476&parId=27FBAE497306732F%2119467&o=OneUp)
+
+
 
