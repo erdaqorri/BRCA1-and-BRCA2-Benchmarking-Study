@@ -1,40 +1,28 @@
 # Assessing the performance of ten pathogenicity prediction algorithms on a dataset of missense BRCA1 and BRCA2 mutations.
 This repository contains all the complementary information for the study: "Assessing the performance of eight pathogenicity prediction algorithms on a dataset of missense BRCA1 and BRCA2 mutations."
 
-## Table of Contents
-In this repository you will have access to the following files:
+**1. Background**
 
-1. Benchmarking Datasets for the BRCA1 and BRCA2 genes.
-2. The Confusion Matrices for each gene.
-3. The performance evaluation metrics table.
-4. Corresponding graphs.
-5. AUC Curves.
-6. The R script utilized to calculate the performance metrics of these genes.
-7. The R script utilized to generate the graphs and AUC curves.
+The routine application of next-generation sequencing in clinical oncology and in particular in the screening of two clinically important genes such as BRCA1 and BRCA2 has resulted in the identification of thousands of genomic variants, whose clinical significance is unknown.
+To address this issue, a plethora of bioinformatics algorithms have been developed in the last two decades. These computational methods, however, utilize and weigh different features to predict the clinical significance of these variants, hence systematic benchmarking is imperative in identifying the best-performing algorithms. 
 
-**Materials and Methods**
+**2. Materials and Methods**
 
-A) *Benchmarked Prediction Algorithms*
+The ten algorithms assessed in this study are:
+- PMut<sup>[1]</sup>
+- Panther-PSEP<sup>[2]</sup>
+- SIFT<sup>[3]</sup>
+- SNPs&GO<sup>[4]</sup>
+-  META-SNP<sup>[5]</sup>
+-   PredictSNP<sup>[6]</sup>
+-   PhD-SNP<sup>[7]</sup>
+-   PROVEAN<sup>[8]</sup>
+-    HumDiv (Polyphen-2)<sup>[9]</sup>
+-   HumVar (Polyphen-2)<sup>[10]</sup> 
 
-In this study we evaluated the performance of ten prediction algorithms namely, PhD-SNP, PMut, SNPs&GO, PredictSNP, META-SNP, HumDiv (Polyphen-2), HumVar (Polyphen-2),
-PROVEAN, Panther-PSEP, and SIFT. 
-Of these computational tools, PredictSNP, PhD-SNP, PMut, SNPs&GO, META-SNP, HumDiv, and HumVar utilize machine learning methods such as Random Forests, Naive Bayes, and Support Vector Machines (SVM) to distingiush between pathogenic and benign variants.
-All the prediction algorithms with the exception of PROVEAN and Panther-PSEP generate binary outputs for each missense variant, either "Pathogenic/Deleterious" or "Benign/Neutral". HumDiv, HumVar, and Panther-PSEP on the other hand generate three results output: "probably damaging", "possibly damaging", and "neutral", however in this study we dichotomized these results by considering the possibly damaging and probably damaging prediction as "damaging". 
+**2.1** *Datasets*
 
-These prediction algorithms were selected based on a stringet set of criteria:
-- Availability of the Training Dataset
-- Accept amino acid changes as an input
-- A minimum of 15 citations in peer reviewed journal in the time period from January 2020 unti April 2022.
-
-
-B) *Running Parameters*
-The above-mentioned prediction algorithms were accessed via their respective web-interfaces and run utilizing default parameters and thresholds as suggested by the authors in their original publications.
-
-C) *Datasets*
-To assess the performance of these prediction algorithms we compiled two gene specific benchmarking datasets from the public database ClinVar.
-
-1. BRCA1 benchmarking dataset which consisted of 151 missense variants of which 59 were pathogenic and 92 benign.
-2. BRCA2 benchmarking dataset composed of 134 missense variants, 29 pathogenic and 105 benign. 
+To assess the performance of these prediction algorithms two gene specific benchmarking datasets were compiled from the public database ClinVar (Table 1).
 
 Variants were retrived from ClinVar according to the following criteria:
 - *Gene*: BRCA1/BRCA2
@@ -42,49 +30,27 @@ Variants were retrived from ClinVar according to the following criteria:
 - *Molecular Consequence*: Missense
 - *Review Status*: Reviewed by an expert panel and/or Assertion criteria provided. Multiple submitters, no conficts in interpretation.
 
-The retrieved variants were processed to remove in-frame deleterions, insertions, and frameshifts in order to keep only the missense variants.
-Moreover, given the proven impact of type 1 circularity (Grim) in the performance of these prediction algorithms, we screned the training datasets of the following tools: PredictSNP, META-SNP, HumDiv, HumVar, PMut, PhD-SNP, and SNPs&GO and removed the overlapping variants between our benchmarking datasets and the training datasets of these tools. Variants that were present in the training dataset of one of tools and not in the others were also removed in order to ensure that the tools were evaluated in the same dataset.
+*Table 1: The benchmarking datasets utilized in this study*
+| Datasets | Size     | Pathogenic | Benign   |
+|:---:|:---:|:---:|:---:|
+| BRCA1 | 151 | 59 | 92 |
+| BRCA2 | 134 | 29 | 105 |
 
-D) Performance Evaluation
-The performance of the prediction algorithms was assessed by calculating six statistical metrics namely, sensitivity, specificity, positive predictive value (PPV), negative predictive value (NPV), Matthew's Correlation Coefficient, Accuracy, and Area under the receivr operating characteristic curve. 
+The retrieved variants were processed, filtered and then screened against the training datasets of the prediction algorithms. The overlapping variants between our benchmarking datasets and the training datasets were excluded from further analysis.
+Moreover, to ensure that the prediction algorithms were evaluated on the same variants, those presents in the training dataset of one of the tools but not in the others were also excluded.
 
-**Results**
-
-- Confusion Matrices
-
-BRCA1
-
-| Prediction Algorithms  | True Positives <br>(TP)  | False Negatives <br>(FN)  | True Negatives <br>(TN)  | False Positives <br>(FP)  |
-|---|---|---|---|---|
-| PMut  | 52  | 7  | 77  | 15  |
-| PROVEAN  | 0  | 59  | 64  | 28  |
-| SIFT  | 57  | 2  | 36  | 56  |
-| SNPs-GO  | 48  | 11  | 85  | 7  |
-| PhD-SNP  | 55  | 4  | 49  | 43  |
-| PredictSNP  | 55  | 4  | 55  | 37  |
-| META-SNP  | 54  | 5  | 58  | 34  |
-| Panther-PSEP  | 49  | 10  | 84  | 8  |
-| HumVar  | 31  | 28  | 60  | 32  |
-| HumDiv  | 43  | 16  | 44  | 48  |
-
-BRCA2
-
-| Prediction Algorithms  | True Positives <br>(TP)  | False Negatives <br>(FN)  | True Negatives <br>(TN)  | False Positives <br>(FP)  |
-|---|---|---|---|---|
-| PMut  | 52  | 7  | 77  | 15  |
-| PROVEAN  | 0  | 59  | 64  | 28  |
-| SIFT  | 57  | 2  | 36  | 56  |
-| SNPs-GO  | 48  | 11  | 85  | 7  |
-| PhD-SNP  | 55  | 4  | 49  | 43  |
-| PredictSNP  | 55  | 4  | 55  | 37  |
-| META-SNP  | 54  | 5  | 58  | 34  |
-| Panther-PSEP  | 49  | 10  | 84  | 8  |
-| HumVar  | 31  | 28  | 60  | 32  |
-| HumDiv  | 43  | 16  | 44  | 48  |
+Lastly, the performance of the predictors was evaluated using ten statistical metrics namely, accuracy, sensitivity, specificity, positive predictive value (PPV), negative predictive value (NPV), detection rate, Mathews Correlation Coefficient (MCC), and Area Under the receiver characteristic curve (AUC-ROC). 
 
 
+**3. Results**
 
-    **BRCA1**
+According to our findings, the efficacy of the prediction algorithms can heavily be influenced by the type of the studied gene. Panther-PSEP (74,84%) and SNPs&GO (74,77%) were the most accurate predictors for BRCA1 (Table 2), while PMut (93,28%) was the most accurate predictor for BRCA2 (Table 3).
+In the next step, we assessed the ability of these predictors to distinguish between benign and pathogenic variants by utilizing AUC-ROC curves. 
+The Area Under the Curve (AUC) takes values in the interval [0, +1], where 0 indicates completely inaccurate predictions, 0.5 random predictions, and a value of 1 indicates a perfect classifier with a zero-classification error rate. 
+PROVEAN, as shown in Table 1 and Table 2, is the least discriminating algorithm in both genes, displaying AUC values of 0.51 for BRCA1, and 0.54 for BRCA2. 
+In BRCA1, PMut and SNPs&GO both achieved an AUC of 0.93, indicating an excellent ability to distinguish between the two classes. As for BRCA2, HumVar was the most discriminative algorithm with an AUC value of 0.90. 
+
+ *Table 2: The performance metrics for the BRCA1 gene*
     
 | Software  | ACC <br>(%)  | SEN <br>(%)  | SPE <br>(%)  | PPV <br>(%)  | NPV <br>(%)  | MCC  | AUC  |
 |---|---|---|---|---|---|---|---|
@@ -99,7 +65,7 @@ BRCA2
 | HumDiv  | 57.62  | 72.88  | 47.83  | 47.25  | 73.33  | 0.21  | 0.66  |
 | HumVar  | 60.26  | 52.54  | 65.22  | 49.21  | 68.18  | 0.18  | 0.65  |
 
-**BRCA2**
+*Table 3: The performance metrics for the BRCA2 gene*
 
 | Software  | ACC <br>(%)  | SEN <br>(%)  | SPE <br>(%)  | PPV <br>(%)  | NPV <br>(%)  | MCC  | AUC  |
 |---|---|---|---|---|---|---|---|
@@ -114,10 +80,20 @@ BRCA2
 | HumDiv  | 69.40  | 89.66  | 63.81  | 40.63  | 95.71  | 0.441  | 0.874  |
 | HumVar  | 79.10  | 82.76  | 78.10  | 51.06  | 94.25  | 0.525  | 0.902  |
 
-Images
-MCC
+**4. Discussions and Conclusions**
 
-![This is an image](https://onedrive.live.com/?cid=27FBAE497306732F&id=27FBAE497306732F%2119476&parId=27FBAE497306732F%2119467&o=OneUp)
+In agreement with previous studies, we found that the performance of prediction algorithms depends greatly on the type of gene analyzed. Based on our results, different predictors are required for the classification of BRCA1 and BRCA2 variants. Furthermore, certain predictive models, such as PROVEAN, exhibit strong gene dependence, which can mislead variant interpretation and prediction for BRCA genes. 
 
+Our study concludes that systematic gene-specific benchmarking studies are critical to determining the best performing prediction algorithm for any given gene. 
 
-
+**5. References**
+1. López-Ferrando, V., Gazzo, A., De La Cruz, X., Orozco, M., & Gelpí, J. L. (2017). PMut: A web-based tool for the annotation of pathological variants on proteins, 2017 update. Nucleic Acids Research, 45(W1), W222–W228. https://doi.org/10.1093/nar/gkx313
+2. Tang, H., & Thomas, P. D. (2016). PANTHER-PSEP: Predicting disease-causing genetic variants using position-specific evolutionary preservation. Bioinformatics, 32(14), 2230–2232. https://doi.org/10.1093/bioinformatics/btw222
+3. Ng, P. C., & Henikoff, S. (2002). Accounting for human polymorphisms predicted to affect protein function. Genome Research, 12(3), 436–446. https://doi.org/10.1101/gr.212802
+4. Capriotti, E., Calabrese, R., Fariselli, P., Martelli, P. L., Altman, R. B., & Casadio, R. (2013). WS-SNPs&GO: a web server for predicting the deleterious effect of human protein variants using functional annotation. BMC Genomics, 14 Suppl 3(Suppl 3). https://doi.org/10.1186/1471-2164-14-s3-s6
+5. Capriotti, E., Altman, R. B., & Bromberg, Y. (2013). Collective judgment predicts disease-associated single nucleotide variants. BMC Genomics, 14 Suppl 3(Suppl 3), S2. https://doi.org/10.1186/1471-2164-14-s3-s2
+6. Bendl, J., Stourac, J., Salanda, O., Pavelka, A., Wieben, E. D., Zendulka, J., Brezovsky, J., & Damborsky, J. (2014). PredictSNP: Robust and Accurate Consensus Classifier for Prediction of Disease-Related Mutations. PLoS Computational Biology, 10(1), 1–11. https://doi.org/10.1371/journal.pcbi.1003440
+7. Capriotti E, Calabrese R, Casadio R. Predicting the insurgence of human genetic diseases associated to single point protein mutations with support vector machines and evolutionary information. Bioinformatics. 2006;14(22):2729–2734. doi: 10.1093/nar/gkg509. 
+8. Choi, Y., Sims, G. E., Murphy, S., Miller, J. R., & Chan, A. P. (2012). Predicting the Functional Effect of Amino Acid Substitutions and Indels. PLoS ONE, 7(10). https://doi.org/10.1371/journal.pone.0046688
+9. Adzhubei, I., Jordan, D. M., & Sunyaev, S. R. (2013). Predicting functional effect of human missense mutations using PolyPhen-2. In Current Protocols in Human Genetics (Issue SUPPL.76). https://doi.org/10.1002/0471142905.hg0720s76
+10. Adzhubei, I., Jordan, D. M., & Sunyaev, S. R. (2013). Predicting functional effect of human missense mutations using PolyPhen-2. In Current Protocols in Human Genetics (Issue SUPPL.76). https://doi.org/10.1002/0471142905.hg0720s76
