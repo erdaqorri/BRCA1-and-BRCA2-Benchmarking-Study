@@ -1,7 +1,6 @@
-# Script 1 ----------------------------------------------------------------
+# Script 1 : BRCA1 ----------------------------------------------------------------
 
 # Study Details -----------------------------------------------------------
-
 # Title: "Assessing the performance of ten pathogenicity prediction algorithms on a dataset of missense BRCA1 and BRCA2 mutations."
 # Author: Erda Qorri
 # Date: 16/05/2022
@@ -15,7 +14,6 @@ library(tibble)
 
 # Evaluation Metrics
 # PMut ----
-
 PMut_BRCA1 <-
   read.table("BRCA1_29-03-2022//PMut_BRCA1.txt", header = T)
 
@@ -33,9 +31,7 @@ pmut_evl_1 <- evaluate(
 
 View(pmut_evl_1)
 
-
 # PROVEAN ----
-
 provean_brca1 <-
   read.table("BRCA1_29-03-2022/PROVEAN_BRCA1.txt", header = T)
 
@@ -51,7 +47,6 @@ provean_evl_brca1 <- evaluate(
 View(provean_evl_brca1)
 
 # SIFT ----
-
 sift_brca1 <-
   read.table("BRCA1_29-03-2022/SIFT_BRCA1.txt", header = T)
 
@@ -65,7 +60,6 @@ sift_evl_brca1 <- evaluate(
 )
 
 View(sift_evl_brca1)
-
 # SNPs&GO ----
 
 snpsgo_brca1 <-
@@ -83,7 +77,6 @@ snpsgo_evl_brca1 <- evaluate(
 View(snpsgo_evl_brca1)
 
 # PhD-SNP ----
-
 phdsnp_brca1 <-
   read.table("BRCA1_29-03-2022/PhD-SNP_BRCA1.txt", header = T)
 
@@ -99,7 +92,6 @@ phdsnp_evl_brca1 <- evaluate(
 View(phdsnp_evl_brca1)
 
 # PredictSNP ----
-
 predictsnp_brca1 <-
   read.table("BRCA1_29-03-2022/PredictSNP_BRCA1.txt", header = T)
 
@@ -115,7 +107,6 @@ predictsnp_evl_brca1 <- evaluate(
 View(predictsnp_evl_brca1)
 
 # META-SNP ----
-
 metasnp_brca1 <-
   read.table("BRCA1_29-03-2022/META-SNP_R_Input.txt", header = T)
 
@@ -131,7 +122,6 @@ metasnp_evl_brca1 <- evaluate(
 View(metasnp_evl_brca1)
 
 # PANTHER-PSEP ----
-
 pantherpsep_brca1 <-
   read.table("BRCA1_29-03-2022/PANTHER-PSEP_BRCA1.txt", header = T)
 
@@ -147,7 +137,6 @@ pantherpsep_evl_brca1 <- evaluate(
 View(pantherpsep_evl_brca1)
 
 # HumDiv ----
-
 humdiv_brca1 <-
   read.table("BRCA1_29-03-2022/HumDiv_BRCA1.txt", header = T)
 
@@ -163,7 +152,6 @@ humdiv_evl_brca1 <- evaluate(
 View(humdiv_evl_brca1)
 
 # HumVar ----
-
 humvar_brca1 <-
   read.table("BRCA1_29-03-2022/HumVar_BRCA1.txt", header = T)
 
