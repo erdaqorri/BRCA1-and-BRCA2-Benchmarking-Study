@@ -35,7 +35,6 @@ View(pmut_evl_1)
 
 
 # PROVEAN ----
-
 provean_brca2 <-
   read.table("brca2_29-03-2022/PROVEAN_brca2.txt", header = T)
 
@@ -51,7 +50,6 @@ provean_evl_brca2 <- evaluate(
 View(provean_evl_brca2)
 
 # SIFT ----
-
 sift_brca2 <-
   read.table("brca2_29-03-2022/SIFT_brca2.txt", header = T)
 
@@ -67,7 +65,6 @@ sift_evl_brca2 <- evaluate(
 View(sift_evl_brca2)
 
 # SNPs&GO ----
-
 snpsgo_brca2 <-
   read.table("brca2_29-03-2022/SNPs&GO_brca2.txt", header = T)
 
@@ -83,7 +80,6 @@ snpsgo_evl_brca2 <- evaluate(
 View(snpsgo_evl_brca2)
 
 # PhD-SNP ----
-
 phdsnp_brca2 <-
   read.table("brca2_29-03-2022/PhD-SNP_brca2.txt", header = T)
 
@@ -99,7 +95,6 @@ phdsnp_evl_brca2 <- evaluate(
 View(phdsnp_evl_brca2)
 
 # PredictSNP ----
-
 predictsnp_brca2 <-
   read.table("brca2_29-03-2022/PredictSNP_brca2.txt", header = T)
 
@@ -115,7 +110,6 @@ predictsnp_evl_brca2 <- evaluate(
 View(predictsnp_evl_brca2)
 
 # META-SNP ----
-
 metasnp_brca2 <-
   read.table("brca2_29-03-2022/META-SNP_R_Input.txt", header = T)
 
@@ -131,7 +125,6 @@ metasnp_evl_brca2 <- evaluate(
 View(metasnp_evl_brca2)
 
 # PANTHER-PSEP ----
-
 pantherpsep_brca2 <-
   read.table("brca2_29-03-2022/PANTHER-PSEP_brca2.txt", header = T)
 
@@ -147,7 +140,6 @@ pantherpsep_evl_brca2 <- evaluate(
 View(pantherpsep_evl_brca2)
 
 # HumDiv ----
-
 humdiv_brca2 <-
   read.table("brca2_29-03-2022/HumDiv_brca2.txt", header = T)
 
@@ -163,7 +155,6 @@ humdiv_evl_brca2 <- evaluate(
 View(humdiv_evl_brca2)
 
 # HumVar ----
-
 humvar_brca2 <-
   read.table("brca2_29-03-2022/HumVar_brca2.txt", header = T)
 
