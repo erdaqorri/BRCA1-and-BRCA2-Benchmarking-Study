@@ -1,5 +1,5 @@
 # Assessing the performance of ten pathogenicity prediction algorithms on a dataset of missense BRCA1 and BRCA2 mutations.
-This repository contains all the complementary information for the study: "Assessing the performance of eight pathogenicity prediction algorithms on a dataset of missense BRCA1 and BRCA2 mutations."
+This repository contains all the complementary information for the study: "Assessing the performance of ten pathogenicity prediction algorithms on a dataset of missense BRCA1 and BRCA2 mutations"
 
 **1. Background**
 
